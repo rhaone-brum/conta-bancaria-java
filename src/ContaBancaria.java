@@ -33,20 +33,20 @@ public class ContaBancaria {
             return;
         }
 
-        saldo += valor;
-
         if (valorUsadoChequeEspecial > 0) {
-            double taxa = valorUsadoChequeEspecial * 0.2;
-            double totalDivida = valorUsadoChequeEspecial + taxa;
+            double taxa = valorUsadoChequeEspecial * 0.20;
+            double dividaTotal = valorUsadoChequeEspecial + taxa;
 
-            if (saldo >= totalDivida) {
-                saldo -= totalDivida;
+            if (valor >= dividaTotal) {
+                valor -= dividaTotal;
                 valorUsadoChequeEspecial = 0;
-                System.out.println("Depósito realizado e dívida do cheque especial quitada com taxa.");
+                saldo += valor;
+                System.out.println("Depósito realizado. Dívida do cheque especial quitada.");
             } else {
-                System.out.println("Depósito realizado, mas a dívida do cheque especial ainda não foi quitada.");
+                System.out.println("Depósito usado para abater a dívida do cheque especial, mas ainda não quitou tudo.");
             }
         } else {
+            saldo += valor;
             System.out.println("Depósito realizado com sucesso.");
         }
     }
